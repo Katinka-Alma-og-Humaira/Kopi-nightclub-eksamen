@@ -3,21 +3,21 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 const tables = [
-  { number: 1, type: "small", img: "/assets/table/table_1.png" },
-  { number: 2, type: "small", img: "/assets/table/table_1.png" },
-  { number: 3, type: "medium", img: "/assets/table/table_2.png" },
-  { number: 4, type: "small", img: "/assets/table/table_1.png" },
-  { number: 5, type: "large", img: "/assets/table/table_3.png" },
-  { number: 6, type: "small", img: "/assets/table/table_1.png" },
-  { number: 7, type: "small", img: "/assets/table/table_1.png" },
-  { number: 8, type: "medium", img: "/assets/table/table_2.png" },
-  { number: 9, type: "small", img: "/assets/table/table_1.png" },
-  { number: 10, type: "large", img: "/assets/table/table_3.png" },
-  { number: 11, type: "small", img: "/assets/table/table_1.png" },
-  { number: 12, type: "small", img: "/assets/table/table_1.png" },
-  { number: 13, type: "medium", img: "/assets/table/table_2.png" },
-  { number: 14, type: "small", img: "/assets/table/table_1.png" },
-  { number: 15, type: "large", img: "/assets/table/table_3.png" },
+  { number: 1, type: "small", img: "/assets/table/table_1-lighter.png" },
+  { number: 2, type: "small", img: "/assets/table/table_1-lighter.png" },
+  { number: 3, type: "medium", img: "/assets/table/table_2-lighter.png" },
+  { number: 4, type: "small", img: "/assets/table/table_1-lighter.png" },
+  { number: 5, type: "large", img: "/assets/table/table_3-lighter.png" },
+  { number: 6, type: "small", img: "/assets/table/table_1-lighter.png" },
+  { number: 7, type: "small", img: "/assets/table/table_1-lighter.png" },
+  { number: 8, type: "medium", img: "/assets/table/table_2-lighter.png" },
+  { number: 9, type: "small", img: "/assets/table/table_1-lighter.png" },
+  { number: 10, type: "large", img: "/assets/table/table_3-lighter.png" },
+  { number: 11, type: "small", img: "/assets/table/table_1-lighter.png" },
+  { number: 12, type: "small", img: "/assets/table/table_1-lighter.png" },
+  { number: 13, type: "medium", img: "/assets/table/table_2-lighter.png" },
+  { number: 14, type: "small", img: "/assets/table/table_1-lighter.png" },
+  { number: 15, type: "large", img: "/assets/table/table_3-lighter.png" },
 ];
 
 const Tables = ({ reservations = [], selectedTable, onSelectTable, eventId }) => {
