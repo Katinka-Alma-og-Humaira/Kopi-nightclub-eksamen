@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+:root {
+  /* ==== Colors ==== */
+  /* PRIMITIVES */
+  --color-purple-gradient: oklch(0.7438 0.1818 335.5 / 25%);
+  --color-neutrals-100: oklch(0.6434 0 0);
+  --color-neutrals-200: oklch(1 0 0);
+  --color-neutrals-900: oklch(0 0 0);
+  --color-pink: oklch(0.6535 0.2419 9.27);
+  --color-purple: oklch(0.5588 0.2348 329.1);
+}
+
+@theme {
+  /* TEXT COLOR */
+  --color-text: oklch(1 0 0);
+  --color-text-muted: oklch(0.6434 0 0);
+  --color-text-secondary: oklch(0.6535 0.2419 9.27);
+  --color-btn: oklch(0.7438 0.1818 335.5 / 25%);
+  --color-background: oklch(0 0 0);
+
+  /* TYPOGRAFI */
+  /* --text-p: 1rem;
+  --text-title: 1.25rem;
+  --text-h1: 1.5rem; */
+  --text-p: clamp(1rem, 0.8rem + 0.8vw, 1.15rem);
+  --text-title: clamp(1.15rem, 0.9rem + 1.5vw, 1.5rem);
+  --text-h1: clamp(1.5rem, 0.8rem + 2vw, 2rem);
+  --text-h4: clamp(1.05rem, 0.95rem + 0.6vw, 1.2rem);
+
+  /* RADIUS */
+  --radius-btn: 2.625rem;
+  --radius-img: 1.25rem;
+  --radius-card: 1.25rem;
+
+  /* SPACING */
+  --space-3xs: clamp(0.3125rem, 0.3125rem + 0vw, 0.3125rem);
+  --space-2xs: clamp(0.5625rem, 0.5313rem + 0.125vw, 0.625rem);
+  --space-xs: clamp(0.875rem, 0.8438rem + 0.125vw, 0.9375rem);
+  --space-s: clamp(1.125rem, 1.0625rem + 0.25vw, 1.25rem);
+  --space-m: clamp(1.6875rem, 1.5938rem + 0.375vw, 1.875rem);
+  --space-l: clamp(2.25rem, 2.125rem + 0.5vw, 2.5rem);
+}
+
+body {
+  background-color: var(--color-neutrals-900);
+
+  p {
+    font-size: var(--text-p);
+    color: var(--color-neutrals-100);
+  }
+
+  li {
+    font-size: var(--text-p);
+  }
+
+  h1 {
+    font-size: var(--text-h1);
+    color: var(--color-neutrals-200);
+  }
+
+  h2,
+  h3 {
+    font-size: var(--text-title);
+    color: var(--color-neutrals-200);
+  }
+
+  h4 {
+    font-size: var(--text-h4);
+    color: var(--color-neutrals-200);
+  }
+}
+
+/* AI til swiper styling */
+.swiper-pagination-bullet {
+  background: white !important;
+  opacity: 1 !important;
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 0 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--color-pink) !important;
+}
+
+.swiper {
+  overflow: hidden !important;
+}
+
+.swiper-wrapper {
+  align-items: flex-start !important;
+}
+
+/* TRACK STYLING */
+.rhap_progress-bar {
+  background-color: var(--color-neutrals-200) !important;
+  height: 3px !important;
+  width: 100% !important;
+}
+
+.rhap_progress-filled {
+  background-color: var(--color-pink) !important;
+}
+
+.rhap_progress-indicator {
+  background: white !important;
+}
+
+.rhap_volume-filled {
+  background-color: var(--color-pink) !important;
+}
+
+.rhap_volume-indicator {
+  background-color: white !important;
+}
+
+.rhap_time {
+  color: white !important;
+}
+
+.rhap_volume-bar {
+  background-color: var(--color-neutrals-200) !important;
+}
+
+.rhap_volume-filled {
+  background-color: var(--color-pink) !important;
+}
+
+.rhap_container {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* POPOVER */
+#popup {
+  translate: -100% 0;
+  opacity: 0;
+  transition:
+    translate 0.3s ease,
+    opacity 0.3s ease,
+    display 0.3s allow-discrete,
+    overlay 0.3s allow-discrete;
+}
+
+#popup:popover-open {
+  translate: 0 0;
+  opacity: 1;
+}
+
+@starting-style {
+  #popup:popover-open {
+    translate: -100% 0;
+    opacity: 0;
+  }
+}
+
+#popup::backdrop {
+  background: rgba(0, 0, 0, 0);
+  transition:
+    background 0.3s ease,
+    display 0.3s allow-discrete,
+    overlay 0.3s allow-discrete;
+}
+
+#popup:popover-open::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+@starting-style {
+  #popup:popover-open::backdrop {
+    background: rgba(0, 0, 1, 1);
+  }
+}
+
+[data-split] {
+  display: flex;
+  white-space-collapse: break-spaces;
+  overflow: hidden;
+  position: relative;
+}
+
+.layer {
+  display: flex;
+  white-space-collapse: break-spaces;
+}
+
+.layer--bottom {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+[data-split] span {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.layer--top span {
+  transform: translateY(0%);
+}
+.layer--bottom span {
+  color: var(--color-pink);
+  transform: translateY(110%);
+}
+
+[data-split]:not([data-active]):hover .layer--top span {
+  transform: translateY(-110%);
+}
+[data-split]:not([data-active]):hover .layer--bottom span {
+  transform: translateY(0%);
+}
+
+@property --offset {
+  syntax: "<percentage>";
+  initial-value: 100%;
+  inherits: true;
+}
+
+.pink-gradient {
+  transition: --offset 1.3s;
+  background: linear-gradient(in oklch 150deg, var(--color-pink), var(--color-purple) var(--offset));
+}
+
+.pink-gradient:hover {
+  --offset: 0%;
+}
+
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, oklch(1 0 0 / 0.15), oklch(1 0 0 / 0));
+  pointer-events: none;
+}
