@@ -27,64 +27,60 @@ export async function EventContent({ params }) {
         <Banner title={event?.title} />
         <div className="mb-(--space-l) min-[800px]:max-w-6xl min-[1000px]:mx-auto my-(--space-l)">
           {event?.asset?.url && <img className="w-full object-cover min-[800px]:h-125" src={`${process.env.NEXT_PUBLIC_API_URL}${event.asset.url}`} alt={event.asset.alt || "Event image"} />}
-          <h1 className="mt-(--space-s)">
-            {event?.title} —{" "}
-            {new Date(event?.date).toLocaleDateString("en-EN", {
-              month: "short",
-              day: "numeric",
-            })}{" "}
-            ·{" "}
-            {new Date(event?.date).toLocaleTimeString("en-EN", {
-              hour: "2-digit",
-              minute: "2-digit",
-              hour12: false,
-            })}
-          </h1>
-          <h2 className="mb-(--space-l)">
-            <span className="text-(--color-pink)">
-              Doors open:{" "}
-              {new Date(event?.doorsOpen).toLocaleTimeString("en-EN", {
-                hour: "2-digit",
-                minute: "2-digit",
-                hour12: false,
-              })}
-            </span>
-            <span> | </span>
-            <span>{event?.location}</span>
-          </h2>
-          <div className=" min-[800px]:mx-0 mx-(--space-s) grid grid-cols-1 min-[800px]:grid-cols-2 min-[800px]:gap-x-30">
-            <div>
-              <h3 className="mb-(--space-xs)">Category: {event?.category}</h3>
-              <h3>
-                <span className="text-(--color-pink)">{event?.ageLimit}</span>
-                <span> | </span>
-                <span className="text-(--color-pink)">{event?.price},-</span>
-              </h3>
-              <div className="border-y border-(--color-neutrals-200) text-center mt-(--space-s) mb-(--space-xl) py-(--space-xs)">
-                <h3 className="mb-(--space-3xs)">Lineup</h3>
-                <ul className="text-(--color-neutrals-200) ">
-                  {event?.lineup?.map((artist, i) => (
-                    <li key={i}>{artist}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className="flex justify-center my-(--space-l)">
-                <Link href={`/book-table?eventId=${event.id}`}>
-                  <Button variant="pinkGradiant">BOOK TABLE</Button>
-                </Link>
-              </div>
-            </div>
-            <div>
-              <h2 className="mb-(--space-3xs)">Program</h2>
-              {event?.schedule?.map((item, i) => (
-                <div className="mb-(--space-2xs)" key={i}>
-                  <p className="text-(--color-pink)!">{item.time}</p>
-                  <p>{item.label}</p>
-                </div>
-              ))}
+          <div className="px-(--space-s) min-[800px]:px-0">
+            <h1 className="text-2xl min-[800px]:text-3xl font-black uppercase tracking-wider mt-(--space-m) mb-(--space-s)">{event?.title}</h1>
 
-              <h2 className="mt-(--space-s) mb-(--space-3xs)">Description </h2>
-              <p>{event?.description}</p>
+            <h2 className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[--color-pink] mb-(--space-m)">
+              <span className="text-(--color-pink)">
+                {new Date(event?.date).toLocaleDateString("en-EN", { month: "long", day: "numeric" })}
+                {" - "}
+                {new Date(event?.date).toLocaleTimeString("en-EN", { hour: "2-digit", minute: "2-digit", hour12: false })}
+              </span>
+              <span className="text-neutral-600">|</span>
+              <span className="text-(--color-pink)">Doors open: {new Date(event?.doorsOpen).toLocaleTimeString("en-EN", { hour: "2-digit", minute: "2-digit", hour12: false })}</span>
+              <span className="text-neutral-600">|</span>
+              <span className="text-(--color-pink)">{event?.location}</span>
+            </h2>
+
+            <h4>
+              <span className="text-(--color-neutrals-200) border border-(--color-neutrals-100) px-2 py-2 mr-(--space-2xs)">{event?.ageLimit}</span>
+              <span className="text-(--color-neutrals-200) border border-(--color-neutrals-100) px-2 py-2 mr-(--space-2xs)">{event?.price},-</span>
+              <span className="text-(--color-neutrals-100)">Category: {event?.category}</span>
+            </h4>
+
+            <div className="my-(--space-l)">
+              <Link href={`/book-table?eventId=${event.id}`}>
+                <Button variant="pinkGradiant">BOOK TABLE</Button>
+              </Link>
+            </div>
+            <div className="mt-(--space-l) mb-(--space-m)">
+              <h2 className="mt-(--space-s) mb-(--space-3xs) ">Description </h2>
+              <p className="max-w-200">{event?.description}</p>
+            </div>
+
+            <div className="border-y border-(--color-neutrals-100) py-(--space-s) mb-(--space-l)">
+              <div className="grid grid-cols-1 min-[620px]:grid-cols-2 min-[620px]:divide-x divide-(--color-neutrals-100)">
+                <div className="pl-(--space-l)">
+                  <h4 className="mb-(--space-3xs)">PROGRAM</h4>
+                  {event?.schedule?.map((item, i) => (
+                    <div className="mb-(--space-2xs) flex gap-3 items-start" key={i}>
+                      <p className="text-(--color-pink)!">{item.time}</p>
+                      <p>{item.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="pl-(--space-l)">
+                  <h4 className="mb-(--space-3xs)">LINEUP</h4>
+                  <ul className="list-disc list-inside marker:text-(--color-pink) ">
+                    {event?.lineup?.map((artist, i) => (
+                      <li key={i} className="text-(--color-neutrals-100) mb-(--space-2xs) text-sm">
+                        {artist}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
