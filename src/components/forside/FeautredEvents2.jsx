@@ -4,15 +4,8 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import Button from "@/components/Button";
 import Link from "next/link";
-import { useState } from "react";
 
 const FeautredEvents2 = ({ feauturedevents }) => {
-  const [activeEvent, setActiveEvent] = useState(null);
-
-  const handleEventClick = (eventId) => {
-    setActiveEvent(activeEvent === eventId ? null : eventId);
-  };
-
   return (
     <div>
       <div className="relative min-h-[600px] w-full max-w-full lg:max-w-[1500px] max-h-[1000px] lg:mx-auto my-(--space-l)">
@@ -24,8 +17,8 @@ const FeautredEvents2 = ({ feauturedevents }) => {
         {/* AI har hjulpet motion */}
         <div className="relative flex flex-col md:flex-row gap-14 items-center justify-center z-20">
           {feauturedevents.map((event) => (
-            <motion.div key={event.id} className="relative w-[350px] md:w-[450px]" initial="rest" animate={activeEvent === event.id ? "hover" : "rest"} onMouseEnter={() => setActiveEvent(event.id)} onMouseLeave={() => setActiveEvent(null)}>
-              <div className="relative overflow-hidden cursor-pointer" onClick={() => handleEventClick(event.id)}>
+            <motion.div key={event.id} className="relative w-[350px] md:w-[450px]" initial="rest" whileHover="hover" animate="rest">
+              <div className="relative overflow-hidden">
                 <Image className="w-[350px] md:w-[450px]" src={`${process.env.NEXT_PUBLIC_API_URL}${event.asset.url}`} alt={event.asset.alt} width={400} height={300} />
                 <motion.div
                   className="absolute inset-0 bg-black/50"
