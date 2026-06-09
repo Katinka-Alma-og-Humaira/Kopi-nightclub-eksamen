@@ -131,6 +131,7 @@ body {
   flex: 1 !important;
   display: flex !important;
   justify-content: center !important;
+  margin-bottom: 5px;
 }
 
 .rhap_controls-section {
