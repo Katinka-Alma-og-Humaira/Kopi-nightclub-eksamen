@@ -121,7 +121,7 @@ const TrackPlayer = () => {
             spaceBetween={16}
             slidesPerView={1}
             breakpoints={{
-              340: { slidesPerView: 2 },
+              400: { slidesPerView: 2 },
               768: { slidesPerView: 3 },
               900: { slidesPerView: 4 },
               1300: { slidesPerView: 5 },
