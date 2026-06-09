@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+:root {
+  /* ==== Colors ==== */
+  /* PRIMITIVES */
+  --color-purple-gradient: oklch(0.7438 0.1818 335.5 / 25%);
+  --color-neutrals-100: oklch(0.6434 0 0);
+  --color-neutrals-200: oklch(1 0 0);
+  --color-neutrals-900: oklch(0 0 0);
+  --color-pink: oklch(0.6535 0.2419 9.27);
+}
+
+@theme {
+  --color-text: oklch(1 0 0);
+  --color-text-muted: oklch(0.6434 0 0);
+  --color-text-secondary: oklch(0.6535 0.2419 9.27);
+  --color-btn: oklch(0.7438 0.1818 335.5 / 25%);
+  --color-background: oklch(0 0 0);
+
+  --text-p: 1rem;
+  --text-title: 3.75rem;
+  --text-h1: 3.125rem;
+  /* osv... */
+
+  --radius-btn: 2.625rem;
+  --radius-img: 1.25rem;
+  --radius-card: 1.25rem;
+}
+
+body {
+  background-color: var(--color-neutrals-900);
+
+  p,
+  h1,
+  h2,
+  h3 {
+    color: var(--color-text);
+  }
+}
