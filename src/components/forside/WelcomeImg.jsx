@@ -18,8 +18,9 @@ const WelcomeImg = () => {
       </div>
       {/* AI har hjulpet motion */}
       <div className="flex flex-col md:flex-row gap-8 items-center justify-center">
-        <motion.div key="1" className="relative w-[300px]" initial="rest" animate={activeCard === 1 ? "hover" : "rest"}>
+        <motion.div key="1" className="relative w-[300px]" initial="rest" animate={activeCard === 1 ? "hover" : "rest"} onHoverStart={() => setActiveCard(1)} onHoverEnd={() => setActiveCard(null)}>
           <div className="relative group w-[300px] overflow-hidden cursor-pointer" onClick={() => handleCardClick(1)}>
+            {/* ai hjulpet med on hover */}
             <img src="/assets/content-img/thumb1.jpg" alt="Billede af bord fra klubben" />
             <div className={`absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-300 bg-black ${activeCard === 1 ? "opacity-100" : "opacity-0"} md:opacity-0 md:group-hover:opacity-100`}>
               <img className="border border-(--color-pink) rounded-xs w-15 p-3 mb-(--space-2xs)" src="/assets/icon/favicon.png" alt="fav icon logo" />
@@ -47,8 +48,9 @@ const WelcomeImg = () => {
           </div>
         </motion.div>
 
-        <motion.div key="2" className="relative w-[300px]" initial="rest" animate={activeCard === 2 ? "hover" : "rest"}>
+        <motion.div key="2" className="relative w-[300px]" initial="rest" animate={activeCard === 2 ? "hover" : "rest"} onHoverStart={() => setActiveCard(2)} onHoverEnd={() => setActiveCard(null)}>
           <div className="relative group w-[300px] overflow-hidden cursor-pointer" onClick={() => handleCardClick(2)}>
+            {/* ai hjulpet med on hover */}
             <img src="/assets/content-img/reastaurant_1.jpg" alt="Mad fra restaurant" />
             <div className={`absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-300 bg-black ${activeCard === 2 ? "opacity-100" : "opacity-0"} md:opacity-0 md:group-hover:opacity-100`}>
               <img className="border border-(--color-pink) rounded-xs w-15 p-3 mb-(--space-2xs)" src="/assets/icon/restaurant-icon2.svg" alt="Food from restaurant" />
@@ -76,8 +78,9 @@ const WelcomeImg = () => {
           </div>
         </motion.div>
 
-        <motion.div key="3" className="relative w-[300px]" initial="rest" animate={activeCard === 3 ? "hover" : "rest"}>
+        <motion.div key="3" className="relative w-[300px]" initial="rest" animate={activeCard === 3 ? "hover" : "rest"} onHoverStart={() => setActiveCard(3)} onHoverEnd={() => setActiveCard(null)}>
           <div className="relative group w-[300px] overflow-hidden cursor-pointer" onClick={() => handleCardClick(3)}>
+            {/* ai hjulpet med on hover */}
             <img src="/assets/content-img/thumb2.jpg" alt="Billede af kvinde i bar" />
             <div className={`absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-300 bg-black ${activeCard === 3 ? "opacity-100" : "opacity-0"} md:opacity-0 md:group-hover:opacity-100`}>
               <img className="border border-(--color-pink) rounded-xs w-15 p-3 mb-(--space-2xs)" src="/assets/icon/drink-icon.svg" alt="Food from restaurant" />
