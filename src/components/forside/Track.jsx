@@ -28,16 +28,19 @@ const tracks = [
 
 const TrackPlayer = () => {
   const [currentTrack, setCurrentTrack] = useState(tracks[0]);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [prevEl, setPrevEl] = useState(null);
   const [nextEl, setNextEl] = useState(null);
   const playerRef = useRef(null);
 
   const handleTrackClick = (track) => {
     setCurrentTrack(track);
+    setIsPlaying(true);
     setTimeout(() => {
       playerRef.current?.audio?.current?.play();
     }, 100);
   };
+
   return (
     <div className="flex flex-col items-center lg:max-w-[1000px] max-h-[1000px] lg:mx-auto my-(--space-l)">
       <div className="flex flex-col items-center mb-6">
@@ -57,7 +60,8 @@ const TrackPlayer = () => {
               ref={playerRef}
               key={currentTrack.id}
               src={currentTrack.src}
-              onPlay={(e) => console.log("onPlay")}
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
               showSkipControls={true}
               showJumpControls={false}
               showFilledVolume={true}
@@ -108,7 +112,17 @@ const TrackPlayer = () => {
           >
             {tracks.map((track) => (
               <SwiperSlide key={track.id}>
-                <TrackCard key={track.id} src={track.img} name={track.name} isActive={currentTrack.id === track.id} onClick={() => handleTrackClick(track)} />
+                <TrackCard
+                  key={track.id}
+                  src={track.img}
+                  name={track.name}
+                  isActive={currentTrack.id === track.id && isPlaying}
+                  onClick={() => handleTrackClick(track)}
+                  onPauseClick={() => {
+                    playerRef.current?.audio?.current?.pause();
+                    setIsPlaying(false);
+                  }}
+                />
               </SwiperSlide>
             ))}
           </Swiper>

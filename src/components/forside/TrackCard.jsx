@@ -5,7 +5,7 @@ import { FaRegCirclePause } from "react-icons/fa6";
 import Image from "next/image";
 
 //AI har hjulpet med opsætningen, men motion div kommer fra andre gruppemedlemmmers kode
-const TrackCard = ({ src, name, isActive, onClick }) => {
+const TrackCard = ({ src, name, isActive, onClick, onPauseClick }) => {
   return (
     <motion.div className="relative overflow-hidden" initial="rest" whileHover="hover" animate="rest">
       <div className="relative overflow-hidden">
@@ -28,7 +28,11 @@ const TrackCard = ({ src, name, isActive, onClick }) => {
             }}
             transition={{ duration: 0.3 }}
           >
-            {isActive ? <FaRegCirclePause color="var(--color-pink)" size={40} onClick={onClick} /> : <FaRegPlayCircle color="var(--color-pink)" size={40} onClick={onClick} />}
+            {isActive ? ( // ÆNDRET
+              <FaRegCirclePause color="var(--color-pink)" size={40} onClick={onPauseClick} />
+            ) : (
+              <FaRegPlayCircle color="var(--color-pink)" size={40} onClick={onClick} />
+            )}
           </motion.div>
 
           <motion.div
