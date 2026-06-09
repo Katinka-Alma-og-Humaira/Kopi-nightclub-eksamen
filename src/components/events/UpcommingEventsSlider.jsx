@@ -39,6 +39,7 @@ const UpcommingEventSlider = ({ events, page, totalPages }) => {
               <span className="text-(--color-pink)">|</span>
               <span>{event.location}</span>
             </h3>
+            <h4 className="mb-(--space-xs) text-(--color-neutrals-200) border border-(--color-neutrals-100) px-2 py-2 w-fit ">{event.price},-</h4>
             <p>{event.description}</p>
             <div className="flex justify-center items-center min-[570px]:justify-end mt-8 ">
               <Link href={`/detail-event/${event.slug}`}>
