@@ -4,11 +4,8 @@ async function getComments(eventId) {
   "use cache";
   cacheLife("hours");
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comments`, {
-    next: { tags: ["comments"] },
-  });
-  const allComments = await response.json();
-  return allComments.filter((comment) => comment.eventId === eventId);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comments?eventId=${eventId}`, { next: { tags: ["comments"] } });
+  return await response.json();
 }
 
 const Comments = async ({ eventId }) => {

@@ -1,27 +1,29 @@
-import { getUpcommingEvents } from "../events/UpcomingEvent";
 import Image from "next/image";
 import { Suspense } from "react";
 import { cacheLife } from "next/cache";
 
-async function getCommentCount(eventId) {
+async function getRecentEventsWithComments() {
   "use cache";
   cacheLife("hours");
-  //fik lidt hjælp af AI til hvordan jeg kunne få fat i comments antal
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comments`);
-  const allComments = await response.json();
-  return allComments.filter((comment) => comment.eventId === eventId).length;
-}
 
-const RecentBlogsContent = async () => {
-  const events = await getUpcommingEvents();
-  const recentEvents = events.slice(0, 3);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events?_limit=3`, {
+    next: { tags: ["comments"] },
+  });
+  const events = await response.json();
 
-  const eventsWithComments = await Promise.all(
-    recentEvents.map(async (event) => {
-      const commentCount = await getCommentCount(event.id);
-      return { ...event, commentCount };
+  return Promise.all(
+    events.map(async (event) => {
+      const detailRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/${event.id}?_embed=comments`, {
+        next: { tags: ["comments"] },
+      });
+      return detailRes.json();
     }),
   );
+}
+// Ai hjalp os med at få /events/:id?_embed=comments implementeret
+
+const RecentBlogsContent = async () => {
+  const eventsWithComments = await getRecentEventsWithComments();
 
   return (
     <div className=" mx-5 sm:hidden">
@@ -37,7 +39,7 @@ const RecentBlogsContent = async () => {
             <h3 className="mb-(--space-m) text-(--color-pink)!">
               <span>BY: Admin </span>
               <span>/ </span>
-              <span>{event.commentCount > 0 ? `${event.commentCount} ${event.commentCount === 1 ? "Comment" : "Comments"}` : "No Comments"}</span>
+              <span>{event.comments?.length > 0 ? `${event.comments.length} ${event.comments.length === 1 ? "Comment" : "Comments"}` : "No Comments"}</span>
               <span> / </span>
               <span>{new Date(event.date).toLocaleDateString("en-EN", { day: "numeric", month: "short", year: "numeric" })} </span>
             </h3>
