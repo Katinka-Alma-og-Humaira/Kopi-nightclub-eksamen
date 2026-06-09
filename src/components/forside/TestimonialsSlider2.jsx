@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 
 const TestimonialsSlider2 = ({ testimonials }) => {
   return (
-    <div className="relative bg-[url('/assets/bg/footerbg.jpg')] pt-10 pb-10 bg-cover bg-center bg-no-repeat my-(--space-l) lg:max-w-[1500px] max-h-[1000px] lg:mx-auto">
+    <div className="relative bg-[url('/assets/bg/footerbg.jpg')] pt-10 pb-10 bg-cover bg-center bg-no-repeat lg:max-w-[1500px] max-h-[1000px] lg:mx-auto">
       <div className="absolute inset-0 bg-black/90" />
       <div className="max-w-5xl mx-auto overflow-auto">
         <Swiper className="text-white overflow-visible!" modules={[Pagination]} pagination={{ clickable: true }} spaceBetween={50} slidesPerView={1}>
