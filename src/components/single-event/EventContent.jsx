@@ -4,6 +4,7 @@ import Comments from "@/components/single-event/Comments";
 import LeaveAComment from "@/components/single-event/LeaveAComment";
 import Link from "next/link";
 import Banner from "@/components/Banner";
+import { FaArrowCircleLeft } from "react-icons/fa";
 
 async function getEvent(slug) {
   "use cache";
@@ -26,7 +27,17 @@ export async function EventContent({ params }) {
       <div>
         <Banner title={event?.title} />
         <div className="mb-(--space-l) min-[800px]:max-w-6xl min-[1000px]:mx-auto my-(--space-l)">
-          {event?.asset?.url && <img className="w-full object-cover min-[800px]:h-125" src={`${process.env.NEXT_PUBLIC_API_URL}${event.asset.url}`} alt={event.asset.alt || "Event image"} />}
+          <div className="relative">
+            <Link href="/events">
+              <FaArrowCircleLeft
+                className="
+        absolute top-3 left-3 text-4xl text-(--color-pink) cursor-pointer
+        
+      "
+              />
+            </Link>
+            {event?.asset?.url && <img className="w-full object-top object-cover min-[800px]:h-145" src={`${process.env.NEXT_PUBLIC_API_URL}${event.asset.url}`} alt={event.asset.alt || "Event image"} />}
+          </div>
           <div className="px-(--space-s) min-[800px]:px-0">
             <h1 className="text-2xl min-[800px]:text-3xl font-black uppercase tracking-wider mt-(--space-m) mb-(--space-s)">{event?.title}</h1>
 
