@@ -62,6 +62,21 @@ const TrackPlayer = () => {
               src={currentTrack.src}
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
+              onClickPrevious={() => {
+                const currentIndex = tracks.findIndex((t) => t.id === currentTrack.id);
+                const prevTrack = tracks[(currentIndex - 1 + tracks.length) % tracks.length];
+                handleTrackClick(prevTrack);
+              }}
+              onClickNext={() => {
+                const currentIndex = tracks.findIndex((t) => t.id === currentTrack.id);
+                const nextTrack = tracks[(currentIndex + 1) % tracks.length];
+                handleTrackClick(nextTrack);
+              }}
+              onEnded={() => {
+                const currentIndex = tracks.findIndex((t) => t.id === currentTrack.id);
+                const nextTrack = tracks[(currentIndex + 1) % tracks.length];
+                handleTrackClick(nextTrack);
+              }}
               showSkipControls={true}
               showJumpControls={false}
               showFilledVolume={true}
@@ -69,11 +84,14 @@ const TrackPlayer = () => {
               customProgressBarSection={["PROGRESS_BAR"]}
               customControlsSection={[
                 "CURRENT_TIME",
-                <span key="separator" style={{ color: "white" }}>
+                <span key="sep" style={{ color: "white" }}>
                   {" "}
                   /{" "}
                 </span>,
                 "DURATION",
+                <div key="center" style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                  <span className="rhap_main-controls">{/* MAIN_CONTROLS og LOOP sidder nu sammen i midten */}</span>
+                </div>,
                 "MAIN_CONTROLS",
                 "LOOP",
                 "VOLUME_CONTROLS",
