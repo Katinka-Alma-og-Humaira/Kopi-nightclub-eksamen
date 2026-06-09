@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+:root {
+  /* ==== Colors ==== */
+  /* PRIMITIVES */
+  --color-purple-gradient: oklch(0.7438 0.1818 335.5 / 25%);
+  --color-neutrals-100: oklch(0.6434 0 0);
+  --color-neutrals-200: oklch(1 0 0);
+  --color-neutrals-900: oklch(0 0 0);
+  --color-pink: oklch(0.6535 0.2419 9.27);
+
+  /* TOKENS */
+  --color-text: var(--color-neutrals-200);
+  --color-text-muted: var(--color-neutrals-100);
+  --color-text-secondary: var(--color-pink);
+  --color-btn: var(--color-purple-gradient);
+  --color-background: var(--color-neutrals-900);
+
+  --color-btn-hover: oklch(from var(--color-on-ui-primary) l c h / 0.45);
+
+  --text-p: 1rem;
+  --text-title: 3.75rem;
+  --text-h1: 3.125rem;
+  --text-h2: 2.8125rem;
+  --text-h3: 2.5rem;
+  --text-h4: 2.1875rem;
+  --text-h5: 1.875rem;
+
+  /* ==== Border Radii ==== */
+  --radius-btn: 2.625rem;
+  --radius-img: 1.25rem;
+  --radius-card: 1.25rem;
+}
+
+body {
+  background-color: var(--color-background);
+}
