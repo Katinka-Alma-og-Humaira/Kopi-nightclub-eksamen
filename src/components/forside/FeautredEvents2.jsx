@@ -24,7 +24,7 @@ const FeautredEvents2 = ({ feauturedevents }) => {
         {/* AI har hjulpet motion */}
         <div className="relative flex flex-col md:flex-row gap-14 items-center justify-center z-20">
           {feauturedevents.map((event) => (
-            <motion.div key={event.id} className="relative w-[350px] md:w-[450px]" initial="rest" animate={activeEvent === event.id ? "hover" : "rest"}>
+            <motion.div key={event.id} className="relative w-[350px] md:w-[450px]" initial="rest" animate={activeEvent === event.id ? "hover" : "rest"} onMouseEnter={() => setActiveEvent(event.id)} onMouseLeave={() => setActiveEvent(null)}>
               <div className="relative overflow-hidden cursor-pointer" onClick={() => handleEventClick(event.id)}>
                 <Image className="w-[350px] md:w-[450px]" src={`${process.env.NEXT_PUBLIC_API_URL}${event.asset.url}`} alt={event.asset.alt} width={400} height={300} />
                 <motion.div
