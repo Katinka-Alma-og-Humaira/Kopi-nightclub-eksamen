@@ -3,8 +3,9 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import CustomButton from "../Button";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
-// AI hjalp en smule med motion
 export default function NightclubGallery({ gallery }) {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const items = gallery.slice(0, 7);
@@ -12,9 +13,14 @@ export default function NightclubGallery({ gallery }) {
   const prev = () => setSelectedIndex((i) => (i === 0 ? items.length - 1 : i - 1));
   const next = () => setSelectedIndex((i) => (i === items.length - 1 ? 0 : i + 1));
 
+  const MobileGalleryItem = ({ item, index }) => (
+    <div className="relative overflow-hidden h-72" onClick={() => setSelectedIndex(index)}>
+      <img className="w-full h-full object-cover" src={`${process.env.NEXT_PUBLIC_API_URL}${item.asset.url}`} width={item.asset.width} height={item.asset.height} alt={item.asset.alt} />
+    </div>
+  );
+
   const GalleryItem = ({ item, index, heightClass }) => (
     <motion.div
-      key={item.id}
       className={`relative overflow-hidden ${heightClass}`}
       variants={{
         hidden: { x: -100, opacity: 0 },
@@ -42,16 +48,29 @@ export default function NightclubGallery({ gallery }) {
       <img className="mb-15" src="/assets/bottom_line.png" alt="" width={300} height={300} />
 
       <div className="w-full">
-        <div className="grid grid-cols-1 md:grid-cols-4 w-full">
-          {items.slice(0, 4).map((item, index) => (
-            <GalleryItem key={item.id} item={item} index={index} heightClass="h-60" />
-          ))}
+        {/* MOBIL — Swiper */}
+        <div className="md:hidden">
+          <Swiper spaceBetween={10} slidesPerView={1}>
+            {items.map((item, index) => (
+              <SwiperSlide key={item.id}>
+                <MobileGalleryItem item={item} index={index} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 w-full">
-          {items.slice(4, 7).map((item, index) => (
-            <GalleryItem key={item.id} item={item} index={index + 4} heightClass="h-80" />
-          ))}
+        {/* DESKTOP — grid */}
+        <div className="hidden md:block">
+          <div className="grid grid-cols-4 w-full">
+            {items.slice(0, 4).map((item, index) => (
+              <GalleryItem key={item.id} item={item} index={index} heightClass="h-60" />
+            ))}
+          </div>
+          <div className="grid grid-cols-3 w-full">
+            {items.slice(4, 7).map((item, index) => (
+              <GalleryItem key={item.id} item={item} index={index + 4} heightClass="h-80" />
+            ))}
+          </div>
         </div>
       </div>
 
@@ -61,10 +80,10 @@ export default function NightclubGallery({ gallery }) {
           <Dialog.Content className="fixed z-50 top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] md:w-[700px] bg-black outline-none overflow-visible">
             {selectedIndex !== null && (
               <>
-                <button onClick={prev} className="absolute -left-8 md:-left-55 top-1/2 -translate-y-1/2 text-white p-3 border border-white/40 bg-transparent  focus:outline-none focus:ring-2 focus:ring-[var(--color-pink)]">
+                <button onClick={prev} className="absolute -left-8 md:-left-55 top-1/2 -translate-y-1/2 text-white p-3 border border-white/40 bg-transparent focus:outline-none focus:ring-2 focus:ring-[var(--color-pink)]">
                   ◀
                 </button>
-                <button onClick={next} className="absolute -right-8 md:-right-55 top-1/2 -translate-y-1/2 text-white p-3 border border-white/40 bg-transparen  focus:outline-none focus:ring-2 focus:ring-[var(--color-pink)]">
+                <button onClick={next} className="absolute -right-8 md:-right-55 top-1/2 -translate-y-1/2 text-white p-3 border border-white/40 bg-transparent focus:outline-none focus:ring-2 focus:ring-[var(--color-pink)]">
                   ▶
                 </button>
                 <div className="relative">
