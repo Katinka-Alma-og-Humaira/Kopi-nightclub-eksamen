@@ -29,12 +29,12 @@ const Hero = () => {
         </div>
 
         <div className="flex flex-col items-center md:hidden">
-          <p className="text-white/85 tracking-[14px] uppercase mt-1">Have a good time</p>
+          <p className="!text-white text-shadow-lg/80 tracking-[14px]   uppercase mt-1">Have a good time</p>
           <img src="/assets/bottom_line.png" alt="" aria-hidden="true" className="mt-2 w-full max-w-sm" style={{ mixBlendMode: "screen" }} />
         </div>
 
         <motion.div className="hidden md:flex flex-col items-center" initial={{ opacity: 0, y: -20, clipPath: "inset(0 0 100% 0)" }} animate={{ opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)" }} transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 1.1 }}>
-          <p className="text-white tracking-[14px] uppercase mt-1">Have a good time</p>
+          <p className="!text-white text-shadow-lg/80 tracking-[14px]   uppercase mt-1">Have a good time</p>
           <img src="/assets/bottom_line.png" alt="" aria-hidden="true" className="mt-2 w-full max-w-sm" style={{ mixBlendMode: "screen" }} />
         </motion.div>
 
