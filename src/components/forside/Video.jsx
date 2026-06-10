@@ -4,15 +4,15 @@ import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
-import { div } from "framer-motion/client";
 
 const Video = () => {
   const [prevEl, setPrevEl] = useState(null);
   const [nextEl, setNextEl] = useState(null);
   // ai har hjulpet med at få swiper til at fungere med pilene i bunden da det ikke er swipers standard styling
   return (
-    <div className="w-full max-w-full lg:max-w-[1100px] max-h-[1000px] lg:mx-auto my-(--space-l)">
-      <div className="flex flex-col items-center mb-6">
+    <div className="relative w-full max-w-full lg:max-w-[1500px] lg:mx-auto mt-(--space-l) pb-(--space-l)">
+      <img src="/assets/bg/slider_bg_overlay.png" alt="baggrunsbillede med blå farver" className="absolute inset-0 w-full h-full object-cover" />
+      <div className="relative flex flex-col items-center mb-6 z-10 pt-8">
         <h1>LATEST VIDEO</h1>
         <img src="/assets/bottom_line2.png" alt="Billede af pink gradient linje" />
       </div>
@@ -33,7 +33,7 @@ const Video = () => {
           </Swiper>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex gap-3 z-10">
           <button ref={setPrevEl} className="text-[var(--color-neutrals-200)] cursor-pointer border border-white py-2 px-3">
             ◀
           </button>
