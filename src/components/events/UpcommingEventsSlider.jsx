@@ -15,13 +15,13 @@ const UpcommingEventSlider = ({ events, page, totalPages }) => {
   return (
     <div>
       {events.map((event, index) => (
-        <div key={event.slug} className={`my-(--space-l) lg:max-w-[1500px] max-h-[1000px] lg:mx-auto grid grid-cols-1 min-[570px]:grid-cols-2 gap-8 items-start ${index % 2 !== 0 ? "min-[570px]:[&>*:first-child]:order-2" : ""}`}>
+        <div key={event.slug} className={`mb-(--space-s) lg:max-w-[1500px] max-h-[1000px] lg:mx-auto grid grid-cols-1 min-[570px]:grid-cols-2 gap-8 items-start ${index % 2 !== 0 ? "min-[570px]:[&>*:first-child]:order-2" : ""}`}>
           <div>
             <Link href={`/detail-event/${event.slug}`}>
               <Image className="my-8 min-[570px]:my-0 w-full h-full object-cover" src={`${process.env.NEXT_PUBLIC_API_URL}${event.asset.url}`} alt={event.asset.alt} width={event.asset.width} height={event.asset.height} />
             </Link>
           </div>
-          <div className="mt-(--space-m)">
+          <div className={`mt-(--space-m) ${index % 2 === 0 ? "pr-6 lg:pr-16 xl:pr-24" : "pl-6 lg:pl-16 xl:pl-24"}`}>
             <h2 className="mb-2">{event.title}</h2>
             <h3 className="mb-3 flex items-center gap-3">
               <span className="text-(--color-pink)">
@@ -52,7 +52,7 @@ const UpcommingEventSlider = ({ events, page, totalPages }) => {
         </div>
       ))}
 
-      <div className="flex justify-center items-center gap-3">
+      <div className="flex justify-center items-center gap-3 mt-(--space-l)">
         <div className="flex gap-4 text-white">
           {Array.from({ length: totalPages }).map((_, i) => (
             <button key={i} onClick={() => handlePage(i + 1)} className={`cursor-pointer ${i + 1 === page ? "border-b border-white" : "opacity-40"}`}>
