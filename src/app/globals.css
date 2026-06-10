@@ -121,6 +121,11 @@ body {
   background-color: var(--color-pink) !important;
 }
 
+.rhap_volume-bar-area {
+  width: 120px !important;
+  min-width: 120px !important;
+}
+
 .rhap_container {
   background: transparent !important;
   box-shadow: none !important;
@@ -136,6 +141,21 @@ body {
 
 .rhap_controls-section {
   margin: 0 16px !important;
+}
+
+@media (max-width: 500px) {
+  .rhap_controls-section {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+
+  .rhap_volume-controls {
+    flex-basis: 100%;
+    justify-content: center !important;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
 }
 
 #popup {
