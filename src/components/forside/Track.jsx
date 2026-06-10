@@ -54,8 +54,8 @@ const TrackPlayer = () => {
             <img src={currentTrack.img} alt="billede...." width={300} />
           </div>
 
-          <div className="flex flex-col justify-center w-full">
-            <h2 className="mb-(--space-s)">{currentTrack.name}</h2>
+          <div className="flex flex-col justify-center w-full ">
+            <p className="mb-(--space-s) ml-(--space-s)">{currentTrack.name}</p>
             <AudioPlayer
               ref={playerRef}
               key={currentTrack.id}
@@ -90,7 +90,8 @@ const TrackPlayer = () => {
                 </span>,
                 "DURATION",
                 <div key="center" style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-                  <span className="rhap_main-controls">{/* MAIN_CONTROLS og LOOP sidder nu sammen i midten */}</span>
+                  {" "}
+                  <span className="rhap_main-controls">{/* MAIN_CONTROLS og LOOP sidder nu sammen i midten */}</span>{" "}
                 </div>,
                 "MAIN_CONTROLS",
                 "LOOP",
