@@ -39,7 +39,7 @@ const Hero = () => {
         </motion.div>
 
         <div className="flex gap-4 mt-8 md:hidden">
-          <Link href="/events">
+          <Link href="/events" className="inline-block shadow-[0_0_90px_10px_rgba(0,0,0,1)]">
             <CustomButton variant="transparent">VIEW EVENTS</CustomButton>
           </Link>
           <Link href="/book-table">
@@ -48,7 +48,7 @@ const Hero = () => {
         </div>
 
         <motion.div className="hidden md:flex gap-4 mt-8" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, ease: "easeOut", delay: 1.85 }}>
-          <Link href="/events">
+          <Link href="/events" className="inline-block shadow-[0_0_90px_10px_rgba(0,0,0,1)]">
             <CustomButton variant="transparent">VIEW EVENTS</CustomButton>
           </Link>
           <Link href="/book-table">
