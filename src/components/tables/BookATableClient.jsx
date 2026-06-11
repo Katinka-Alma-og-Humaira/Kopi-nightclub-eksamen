@@ -1,40 +1,38 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import Tables from "@/components/tables/Tables";
 import BookATable from "@/components/tables/BookATable";
 
 const BookATableClient = ({ events, reservations, selectedEventFromBookNow }) => {
   const [selectedTable, setSelectedTable] = useState(null);
-  const [currentReservations, setCurrentReservations] = useState(reservations);
   const [selectedEventId, setSelectedEventId] = useState(selectedEventFromBookNow);
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
-  const handleReservationSuccess = async () => {
-    const eventParam = selectedEventId ? `?eventId=${selectedEventId}` : "";
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reservations${eventParam}`);
-    const updated = await res.json();
-    setCurrentReservations(updated);
+  const handleReservationSuccess = () => {
     setSelectedTable(null);
+    startTransition(() => {
+      router.refresh();
+    });
   };
 
-  useEffect(() => {
-    if (!selectedEventId) return;
-    const fetchReservations = async () => {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reservations?eventId=${selectedEventId}`);
-      const updated = await res.json();
-      setCurrentReservations(updated);
-    };
-    fetchReservations();
-  }, [selectedEventId]);
+  const handleEventChange = (eventId) => {
+    setSelectedEventId(eventId);
+    startTransition(() => {
+      router.push(`?eventId=${eventId}`, { scroll: false });
+    });
+  };
 
   return (
     <section className="max-w-4xl mx-auto px-4 py-16 text-[var(--color-neutrals-200)]">
       <div className="flex flex-col gap-12">
-        <div className="">
-          <Tables reservations={currentReservations} selectedTable={selectedTable} onSelectTable={setSelectedTable} eventId={selectedEventId} />
+        <div>
+          <Tables reservations={reservations} selectedTable={selectedTable} onSelectTable={setSelectedTable} eventId={selectedEventId} />
         </div>
-        <div className="">
+        <div>
           <h1 className="mb-8">Book a Table</h1>
-          <BookATable events={events} selectedTable={selectedTable} selectedEventFromBookNow={selectedEventFromBookNow} onReservationSuccess={handleReservationSuccess} onEventChange={setSelectedEventId} />
+          <BookATable events={events} selectedTable={selectedTable} selectedEventFromBookNow={selectedEventFromBookNow} onReservationSuccess={handleReservationSuccess} onEventChange={handleEventChange} />
         </div>
       </div>
     </section>
