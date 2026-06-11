@@ -4,19 +4,7 @@ import NavBar from "@/components/Navbar";
 import BurgerMenu from "@/components/Burger";
 import Banner from "@/components/Banner";
 import Image from "next/image";
-
-const BookATableContent = async ({ searchParams }) => {
-  const resolvedParams = await searchParams;
-  const eventId = resolvedParams?.eventId ? Number(resolvedParams.eventId) : null;
-
-  const eventsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events`);
-  const events = await eventsRes.json();
-
-  const reservationsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reservations`);
-  const reservations = await reservationsRes.json();
-
-  return <BookATableClient events={events} reservations={reservations} selectedEventFromBookNow={eventId} />;
-};
+import BookTableData from "@/components/tables/BookTableData";
 
 const BookATablePage = ({ searchParams }) => {
   return (
@@ -31,7 +19,7 @@ const BookATablePage = ({ searchParams }) => {
           </div>
         }
       >
-        <BookATableContent searchParams={searchParams} />
+        <BookTableData searchParams={searchParams} />
       </Suspense>
     </div>
   );
