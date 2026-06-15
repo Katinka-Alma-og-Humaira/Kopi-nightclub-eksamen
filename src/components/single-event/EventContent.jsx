@@ -64,12 +64,12 @@ export async function EventContent({ params }) {
                 <Button variant="pinkGradiant">BOOK TABLE</Button>
               </Link>
             </div>
-            <div className="mt-(--space-l) mb-(--space-m)">
+            <div className="mt-(--space-l) mb-(--space-m) mt-20">
               <h2 className="mt-(--space-s) mb-(--space-3xs) ">Description </h2>
               <p className="max-w-200">{event?.description}</p>
             </div>
 
-            <div className="border-y border-(--color-neutrals-100) py-(--space-s) mb-(--space-l)">
+            <div className="border-y border-(--color-neutrals-100) py-(--space-s) mb-20">
               <div className="grid grid-cols-1 min-[620px]:grid-cols-2 min-[620px]:divide-x divide-(--color-neutrals-100)">
                 <div className="pl-(--space-l)">
                   <h4 className="mb-(--space-3xs)">PROGRAM</h4>

@@ -1,6 +1,8 @@
 "use client";
 import AudioPlayer from "react-h5-audio-player";
+
 import "react-h5-audio-player/lib/styles.css";
+
 import { FaRegPlayCircle } from "react-icons/fa";
 import { FaRegCirclePause } from "react-icons/fa6";
 import { GrChapterPrevious } from "react-icons/gr";

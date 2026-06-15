@@ -22,7 +22,7 @@ const UpcommingEventSlider = ({ events, page, totalPages }) => {
             </Link>
           </div>
           <div className={`mt-(--space-m) ${index % 2 === 0 ? "pr-6 lg:pr-16 xl:pr-24" : "pl-6 lg:pl-16 xl:pl-24"}`}>
-            <h2 className="mb-2">{event.title}</h2>
+            <h1 className="mb-2">{event.title}</h1>
             <h3 className="mb-3 flex items-center gap-3">
               <span className="text-(--color-pink)">
                 {new Date(event.date).toLocaleDateString("en-EN", {
